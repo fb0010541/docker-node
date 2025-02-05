@@ -13,3 +13,13 @@ RUN npm run build
 FROM nginx:mainline-bookworm-perl
 COPY --from=builder /home/node/app/dist/docker-node/browser/ /usr/share/nginx/html
 ```
+### 建立 image
+```
+sudo docker build -t mynode:latest .
+```
+### 啟動 container
+```
+sudo docker run -p 8080:80 --rm --name my-running-node mynode:latest
+```
+### 驗證連結
+http://localhost:8080/
