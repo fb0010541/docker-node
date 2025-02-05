@@ -1,8 +1,8 @@
-FROM node:current-alpine3.20
-COPY --chown=1001 *.json .
+FROM node:iron-alpine3.21 AS builder
+WORKDIR /home/node/app
+COPY --chown=1001 *.json /home/node/app
 RUN npm install
-COPY --chown=1001 . .
+COPY --chown=1001 . /home/node/app
 RUN npm run build
 FROM nginx:mainline-bookworm-perl
-COPY --from=builder /opt/app-root/src/dist /opt/app-root/src
-COPY --chown=1001 conf/default.conf /opt/app-root/etc/nginx.d/
+COPY --from=builder /home/node/app/dist/docker-node/browser/ /usr/share/nginx/html
