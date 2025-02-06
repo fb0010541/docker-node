@@ -13,9 +13,9 @@ RUN npm run build
 FROM nginx:mainline-bookworm-perl
 COPY --from=builder /home/node/app/dist/docker-node/browser/ /usr/share/nginx/html
 ```
-> line 1-6:使用 node 容器打包 Angular init 專案  
+> line 1-6:使用 node 容器打包 Angular init 專案，
 > node image 來源請參考 [dockerhub node](https://hub.docker.com/_/node/tags)  
-> line 7-8:將 Angular 檔案部署到 nginx 容器中  
+> line 7-8:將 Angular 檔案部署到 nginx 容器中，
 > nginx image 來源請參考 [dockerhub nginx](https://hub.docker.com/_/nginx/tags)  
 ### 建立 image
 ```
